@@ -1,0 +1,8 @@
+{
+  "prefix":"!",
+  "ownerID":"165294941080125442",
+  "pattern":"[dd/mm/yyyy HH:MM:ss.l]",
+  "datePrefix":"",
+  "dateSuffix":"",
+  "defaultChannel":""
+}

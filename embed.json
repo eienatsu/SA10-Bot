@@ -1,0 +1,28 @@
+{
+  "title": "`New ${channel.type} channel **${channel.name}** created.`",
+  "description": "Test [test](https://www.google.com/)",
+  "url": "https://discordapp.com",
+  "color": 3520996,
+  "timestamp": "",
+  "footer": {
+    "icon_url": "https://i.imgur.com/oaUExtO.png",
+    "text": "footer2"
+  },
+  "thumbnail": {
+    "url": "https://i.imgur.com/PJrs3bW.png"
+  },
+  "image": {
+    "url": "https://i.imgur.com/ynMey8f.png"
+  },
+  "author": {
+    "name": "author name2",
+    "url": "https://discordapp.com",
+    "icon_url": "message.author.avatarURL"
+  },
+  "fields": [
+    {
+      "name": "🤔",
+      "value": "Sometimes I think about these things..."
+    }
+  ]
+}
