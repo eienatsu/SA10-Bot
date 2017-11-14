@@ -23,5 +23,9 @@
     "return-deep-diff": "^0.2.9",
     "uws": "^8.14.1",
     "ytdl-core": "^0.18.1"
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.2.3",
+    "eslint": "^3.19.0"
   }
 }
