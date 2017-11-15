@@ -1,7 +1,7 @@
 const config = require('../config.json');
 
 // message event handler
-module.exports = message => {
+module.exports = async message => {
 	const client = message.client;
 
 	// if the message doesn't start with the prefix, ignore
@@ -25,10 +25,11 @@ module.exports = message => {
 		console.log(`DEBUG: args[${i}] = '${args[i]}'`);
 
 	try {
-		let cmdFile = require(`../commands/${command}`);
+		await message.delete(1000); // delete command message
+		let cmdFile = await require(`../commands/${command}`);
 		cmdFile.run(client, message, args);
-	} catch (err) {
+	} catch (e) {
 		message.channel.send(`**"${command}"** is not a valid command.`);
-		console.log(`Command "${command}" failed\n${err.stack}.`);
+		console.log(`Command "${command}" failed\n${e.stack}.`);
 	}
 };

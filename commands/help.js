@@ -1,12 +1,12 @@
-exports.run = function(client, message) {
-	
+exports.run = async (client, message) => {
+
 	message.channel.send(`\`\`\`SA10 Bot - Dank Bot by 「永遠夏」
   General:
-  	(h)elp                Shows this help message
+  	help                	Shows this help message
   Moderator:
-  	(p)refix              Set new prefix (1 character) [Permissions to be changed]
-  	setgame               Set the game
-  	setstatus             Set status ("online", "idle", "dnd", "invisible")
+  	prefix              	Set new prefix (1 character) [Permissions required]
+  	setgame               Set the game [Permissions required]
+  	setstatus             Set status ("online", "idle", "dnd", "invisible") [Permissions required]
   Dank:
   	yamazaki              Capitalism
   	kagawa                KAGAWA LIFE
@@ -14,20 +14,20 @@ exports.run = function(client, message) {
   	oop                   Object-oriented programming :thinking:
   	hikki                 NEET dreams
   Music:
-  	join                  Make SA10 join the voice channel
-  	leave                 Make SA10 leave the voice channel
+  	join                  SA10 join the voice channel
+  	leave                 SA10 leave the voice channel
   	play                  Play a song (must be stored on host's server)
   	pause                 Pause the song
   	resume                Resume the song
-  	(vol)ume              Set volume level [1-100]
+  	volume              	Set volume level [1-100]
   Google API (Work in progress)
-  	(g)oogle              Return first google search result
-  	ytstats subs          Returns the number of subscribers of a YouTube channel
+  	google              	Return first google search result
+  	ytsubs          Returns the number of subscribers of a YouTube channel
   Anime (Work in progress)
-  	(a)nime               Get a mal page
+  	anime               	Get a mal page
   	mal                   Get a user's mal
   Nihongo (Work in progress)
-  	(j)isho               Translate kanji (漢字) and words (言葉) from jisho.org
+  	jisho               	Translate kanji (漢字) and words (言葉) from jisho.org
   Web Scarpe
   	TBD\`\`\``);
 };

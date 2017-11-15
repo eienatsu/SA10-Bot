@@ -1,14 +1,14 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const auth = require('./auth.json');
-const config = require('./config.json');
+//require('./config.json');
 require('./util/eventLoader')(client);
-const embed = new Discord.RichEmbed();
+//const embed = new Discord.RichEmbed();
 
-const fs = require('fs');
+//const fs = require('fs');
 const ddiff = require('return-deep-diff');
-const request = require('request');
-const search = require('animelyrics');
+//const request = require('request');
+//const search = require('animelyrics');
 const ts = require('console-stamp')(console, {
 	pattern: '[dd/mm/yyyy HH:MM:ss.l]',
 	datePrefix: '',
@@ -49,6 +49,6 @@ client.on('guildBanRemove', (guild, user) => {
 	console.log(`**${user.username}** was just banned at ${new Date()}.`);
 });
 
-client.on('messageDeleteBulk', (message) => {
-	console.log(`"${message.size}" messages were deleted.`);
-});
+// client.on('messageDeleteBulk', (message) => {
+// 	console.log(`"${message.size}" messages were deleted.`);
+// });
