@@ -21,6 +21,7 @@
     "prism-media": "0.0.2",
     "request": "^2.83.0",
     "return-deep-diff": "^0.2.9",
+    "urlencode": "^1.1.0",
     "uws": "^8.14.1",
     "ytdl-core": "^0.18.1"
   },

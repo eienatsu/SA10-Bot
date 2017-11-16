@@ -8,7 +8,10 @@ exports.run = async (client, message, args) => {
 	let ytUser = args.slice(0).join(' ');
 	console.log(`DEBUG: ytUser = "${ytUser}"`);
 	request.get({
-		uri: `https://www.googleapis.com/youtube/v3/channels/?forUsername=${ytUser}&part=snippet,statistics&key=${auth.google_api}`,
+		uri: `https://www.googleapis.com/youtube/v3/channels/?
+			forUsername=${ytUser}&
+			part=snippet,statistics&
+			key=${auth.google_api}`,
 		json: true
 	}, (err, res, body) => {
 		if (err) return console.log(err);
