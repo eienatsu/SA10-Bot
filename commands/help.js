@@ -29,5 +29,7 @@ exports.run = async (client, message) => {
   Nihongo (Work in progress)
   	jisho               	Translate kanji (漢字) and words (言葉) from jisho.org
   Web Scarpe
-  	TBD\`\`\``);
+	  TBD\`\`\``);
+	  
+	  //test
 };
