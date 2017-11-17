@@ -9,30 +9,39 @@ exports.run = async (client, message, args) => {
 		message.channel.send('**ERROR:** No word specified.');
 		console.error('DEBUG: No word specified.');
 	} else {
-		console.log(`DEBUG: inputKanji = '${inputKanji}`);
+		console.log(`DEBUG: inputKanji = '${inputKanji}'`);
 		let url = encodeURI(`http://jisho.org/api/v1/search/words?keyword=${inputKanji}`);
-		console.log(`url = ${url}`);
 		let linkURL = encodeURI(`http://jisho.org/search/${inputKanji}`);
-		console.log(`urlLink = ${linkURL}`);
-		request.get({
-			uri: url,
-			json: true
-		}, (err, res, body) => {
+		request({uri: url, json: true}, (err, res, body) => {
 			if (err) return console.log(err);
 
-		// get kanji data
-			let reading = body.data[0].japanese[0].reading;
-		//let english = body.data[0].senses[1].english_definitions[0];
-			let eng = [];
+			// get kanji readings
+			let reading = [];
+			for (let i = 0; i < body.data[0].japanese.length; i++) {
+				let jWord = body.data[0].japanese[i].word;
+				let jReading = body.data[0].japanese[i].reading;
 
-			for (let i = 0; i < body.data[0].senses[1].english_definitions.length; i++) {
-				eng[i] = body.data[0].senses[1].english_definitions[i];
-				console.log(`eng[${i}] = '${eng[i]}'`);
+				if (jWord !== null && !jReading !== null) {
+					reading += jWord + '「' + jReading + '」';
+					if (i != body.data[0].japanese.length) {
+						reading += '\n';
+					}
+				} else {
+					reading += '「」';
+				}
 			}
 
-			console.log(`reading = '${reading}'`);
-		//console.log(`stringifyReading = ${JSON.stringify(reading)}`);
-		//console.log(`stringifyEngDef = ${JSON.stringify(english)}`);
+			// get english definition
+			let eng = [];
+			for (let i = 0; i < body.data[0].senses.length; i++) {
+				eng += (i+1) + '. ' + body.data[0].senses[i].english_definitions.join(', ');
+				if (i != body.data[0].senses.length) {
+					eng += '\n';
+				}
+			}
+
+			console.log(`DEBUG: reading = '${reading}'`);
+			console.log(`DEBUG: eng = '${eng}'`);
 
 			embed
 			.setColor(0x53D941)
@@ -43,10 +52,10 @@ exports.run = async (client, message, args) => {
 			.setThumbnail('https://i.imgur.com/wtPjaqC.png')
 			//.addBlankField(true)
 			.addField('Kanji/Word:', `${inputKanji}`)
-			.addField('Reading(s):', `${reading}`, true)
-			.addField('Definition(s):', `${eng.join(', ')}`, true)
+			.addField('Reading(s):', `${reading}`)
+			.addField('Definition(s):', `${eng}`)
 			.setTimestamp()
-			.setFooter('I wish Onix would code with me');
+			//.setFooter('http://www.google.com');
 			message.channel.send({embed});
 		});
 	}
