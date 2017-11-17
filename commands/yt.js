@@ -9,19 +9,19 @@ exports.run = async (client, message, args) => {
 	console.log(`DEBUG: ytUser = "${ytUser}"`);
 	request.get({
 		uri: `https://www.googleapis.com/youtube/v3/channels/?
-			forUsername=${ytUser}&
-			part=snippet,statistics&
-			key=${auth.google_api}`,
+				forUsername=${ytUser}&
+				part=snippet,statistics&
+				key=${auth.google_api}`,
 		json: true
 	}, (err, res, body) => {
 		if (err) return console.log(err);
-		var channelID = body.items[0].id;
-		var viewCount = parseInt(body.items[0].statistics.viewCount).toLocaleString();
-		var subCount = body.items[0].statistics.subscriberCount;
-		var cmt = body.items[0].statistics.commentCount;
-		var ytImage = body.items[0].snippet.thumbnails.high.url;
-		var videoCount = body.items[0].statistics.videoCount;
-		var desc = body.items[0].snippet.description;
+		let channelID = body.items[0].id;
+		let viewCount = parseInt(body.items[0].statistics.viewCount).toLocaleString();
+		let subCount = body.items[0].statistics.subscriberCount;
+		let cmt = body.items[0].statistics.commentCount;
+		let ytImage = body.items[0].snippet.thumbnails.high.url;
+		let videoCount = body.items[0].statistics.videoCount;
+		let desc = body.items[0].snippet.description;
 
 		embed
 			.setColor(0xFF0000)

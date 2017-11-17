@@ -1,40 +1,53 @@
-//import { stringify } from 'querystring';
-
 const request = require('request');
 const Discord = require('discord.js');
 const embed = new Discord.RichEmbed();
 
 exports.run = async (client, message, args) => {
 
-	let phrase = args.slice(0).join(' ');
-	console.log(`DEBUG: phrase = "${phrase}"`);
-	var url = 'http://jisho.org/api/v1/search/words?keyword=人';
-	var encodeURL = encodeURI(url);
-	console.log(`encodeURL = ${encodeURL}`);
-	request.get({
-		uri: encodeURL,
-		json: true
-	}, (err, res, body) => {
-		if (err) return console.log(err);
-		var kunReading = body.data[0].japanese[0].reading;
+	let inputKanji = args.slice(0).join(' ');
+	if (!inputKanji) {
+		message.channel.send('**ERROR:** No word specified.');
+		console.error('DEBUG: No word specified.');
+	} else {
+		console.log(`DEBUG: inputKanji = '${inputKanji}`);
+		let url = encodeURI(`http://jisho.org/api/v1/search/words?keyword=${inputKanji}`);
+		console.log(`url = ${url}`);
+		let linkURL = encodeURI(`http://jisho.org/search/${inputKanji}`);
+		console.log(`urlLink = ${linkURL}`);
+		request.get({
+			uri: url,
+			json: true
+		}, (err, res, body) => {
+			if (err) return console.log(err);
 
-		console.log(`kunReading = ${kunReading}`);
-		let stringifyKunReading= JSON.stringify(kunReading);
-		console.log(`stringifyKunReading = ${stringifyKunReading}`);
+		// get kanji data
+			let reading = body.data[0].japanese[0].reading;
+		//let english = body.data[0].senses[1].english_definitions[0];
+			let eng = [];
 
-		embed
+			for (let i = 0; i < body.data[0].senses[1].english_definitions.length; i++) {
+				eng[i] = body.data[0].senses[1].english_definitions[i];
+				console.log(`eng[${i}] = '${eng[i]}'`);
+			}
+
+			console.log(`reading = '${reading}'`);
+		//console.log(`stringifyReading = ${JSON.stringify(reading)}`);
+		//console.log(`stringifyEngDef = ${JSON.stringify(english)}`);
+
+			embed
 			.setColor(0x53D941)
-			.setTitle(`Jisho: **${phrase}**`)
-			.setAuthor('Japanese-English dictionary bot by Eienatsu')
-			.setDescription(`Kanji: 人`)
-			.setThumbnail('https://i.imgur.com/0YgTMd3.gifv')
-			.setURL(`http://jisho.org/api/v1/search/words?keyword=人`)
-			.addField('Kun-reading:', `${kunReading}`)
-			// .addField('Subscribers:', `${subCount}`)
-			// .addField('Public Videos:', `${videoCount}`)
-			// .addField('Channel Comments:', `${cmt}`)
+			.setTitle(`jisho.org: ${inputKanji}`)
+			.setURL(`${linkURL}`)
+			//.setAuthor('Japanese-English dictionary bot by Eienatsu')
+			//.setDescription(`Kanji: 人`)
+			.setThumbnail('https://i.imgur.com/wtPjaqC.png')
+			//.addBlankField(true)
+			.addField('Kanji/Word:', `${inputKanji}`)
+			.addField('Reading(s):', `${reading}`, true)
+			.addField('Definition(s):', `${eng.join(', ')}`, true)
 			.setTimestamp()
-			.setFooter('JSON ID: ${needtofuckingcallthisvariablelater}');
-		message.channel.send({embed});
-	});
+			.setFooter('I wish Onix would code with me');
+			message.channel.send({embed});
+		});
+	}
 };

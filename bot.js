@@ -9,10 +9,8 @@ require('./util/eventLoader')(client);
 const ddiff = require('return-deep-diff');
 //const request = require('request');
 //const search = require('animelyrics');
-const ts = require('console-stamp')(console, {
-	pattern: '[dd/mm/yyyy HH:MM:ss.l]',
-	datePrefix: '',
-	dateSuffix: '',
+require('console-stamp')(console, {
+	pattern: '[mm/dd/yyyy HH:MM:ss.l]'
 });
 
 var defaultChannel = '375494044962390016';

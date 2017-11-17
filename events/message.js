@@ -21,11 +21,11 @@ module.exports = async message => {
 	console.log(`DEBUG: command = '${command}'`);
 
 	// debug all slices
-	for (var i = 0; i < args.length; i++)
+	for (let i = 0; i < args.length; i++)
 		console.log(`DEBUG: args[${i}] = '${args[i]}'`);
 
 	try {
-		await message.delete(1000); // delete command message
+		//await message.delete(1000); // delete command message
 		let cmdFile = await require(`../commands/${command}`);
 		cmdFile.run(client, message, args);
 	} catch (e) {
