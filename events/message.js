@@ -1,13 +1,16 @@
 const config = require('../config.json');
+const jp = require('nihongo');
 
 // message event handler
 module.exports = async message => {
 	const client = message.client;
 
-	// if the message doesn't start with the prefix, ignore
 	if (!message.content.startsWith(config.prefix)) return;
-	console.log('-----------------------------------------------');
+	console.log('------------------INIT START------------------');
 	console.log(`DEBUG: prefix = '${config.prefix}'`);
+
+	if (jp.isJapanese(message.content))
+		console.log(`DEBUG: jp = '${message.content}'`);
 
 	// checks that the Bot only reads the message from the sender
 	if (message.author.bot) return;
@@ -17,7 +20,7 @@ module.exports = async message => {
 	console.log(`DEBUG: args = '${args}'`);
 
 	// isolate the command by itself
-	var command = args.shift().toLowerCase();
+	var command = args.shift().toLowerCase().trim();
 	console.log(`DEBUG: command = '${command}'`);
 
 	// debug all slices
@@ -32,4 +35,5 @@ module.exports = async message => {
 		message.channel.send(`**"${command}"** is not a valid command.`);
 		console.log(`Command "${command}" failed\n${e.stack}.`);
 	}
+	console.log('------------------INIT END------------------');
 };
