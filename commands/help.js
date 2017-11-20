@@ -1,33 +1,32 @@
-exports.run = async (client, message) => {
+const config = require('../config.json');
 
-	message.channel.send(`\`\`\`SA10 Bot - Dank Bot by 「永遠夏」
-  General:
-  	help                	Shows this help message
-  Moderator:
-  	prefix                	Set new prefix (1 character) [Permissions required]
-  	setgame               	Set the game [Permissions required]
-  	setstatus             	Set status ("online", "idle", "dnd", "invisible") [Permissions required]
-  Dank:
-  	yamazaki              	Capitalism
-  	kagawa                	KAGAWA LIFE
-  	sa10                  	SA10
-  	oop                   	Object-oriented programming :thinking:
-  	hikki                 	NEET dreams
-  Music:
-  	join                  	SA10 join the voice channel
-  	leave                 	SA10 leave the voice channel
-  	play                  	Play a song (must be stored on host's server)
-  	pause                 	Pause the song
-  	resume                	Resume the song
-  	volume              	Set volume level [1-100]
-  Google API (Work in progress)
-  	google              	Return first google search result
-  	ytsubs          		Returns the number of subscribers of a YouTube channel
-  Anime (Work in progress)
-  	anime               	Get a mal page
-  	mal                   	Get a user's mal
-  Nihongo (Work in progress)
-  	jisho               	Translate kanji (漢字) and words (言葉) from jisho.org
-  Web Scarpe
-	  TBD\`\`\``);
+exports.run = (client, message, args) => {
+	
+	if (!args[0]) {
+		const commandNames = Array.from(client.commands.keys());
+		const longest = commandNames.reduce((long, str) => Math.max(long, str.length), 0);
+		message.channel.send('```SA10 Bot by 「永遠夏」 \n[Use ' + 
+			config.prefix + 'help <command> for details]\n' + 
+			client.commands.map(c => config.prefix + c.help.name + ' '.repeat(longest - c.help.name.length) 
+			+ '\t\t' + c.help.description).join('\n') + '```');
+	} else {
+		let command = args[0];
+		if (client.commands.has(command)) {
+			command = client.commands.get(command);
+			message.channel.send(`= ${command.help.name} = \n${command.help.description}\nusage::${command.help.usage}`);
+		}
+	}
+};
+
+exports.conf = {
+	enabled: true,
+	guildOnly: false,
+	aliases: ['h', 'halp'],
+	permLevel: 0
+};
+
+exports.help = {
+	name: 'help',
+	description: 'Displays this message',
+	usage: 'help [command]'
 };

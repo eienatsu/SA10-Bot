@@ -6,3 +6,16 @@ exports.run = function(client, message) {
 	});
 	console.log('DEBUG: Stopped.');
 };
+
+exports.conf = {
+	enabled: true,
+	guildOnly: false,
+	aliases: [],
+	permLevel: 0
+};
+
+exports.help = {
+	name: 'stop',
+	description: 'Stop music',
+	usage: 'stop [command]'
+};

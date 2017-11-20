@@ -16,3 +16,16 @@ exports.run = function(client, message, args) {
 Valid statuses: "online", "idle", "dnd" (do not disturb), "invisible"\`\`\``);
 	}
 };
+
+exports.conf = {
+	enabled: true,
+	guildOnly: false,
+	aliases: ['ss'],
+	permLevel: 3
+};
+
+exports.help = {
+	name: 'setstatus',
+	description: 'Set the game status',
+	usage: 'setstatus [command]'
+};

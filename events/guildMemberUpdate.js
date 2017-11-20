@@ -1,6 +1,6 @@
-const config = require('../config.json');
+const ddiff = require('return-deep-diff');
 
-module.exports = member => {
-	member.guild.channels.get(config.defaultChannel).send(`${member.user} has despawned.`);
-	console.log(`"${member.user.username}" has despawned at ${new Date()}.`);
+module.exports = (oldMember, newMember) => {
+	//member.guild.channels.get(config.defaultChannel).send(`${member.user} has despawned.`);
+	console.log(ddiff(oldMember, newMember));
 };

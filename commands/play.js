@@ -1,6 +1,6 @@
 const config = require('../config.json');
 
-exports.run = function(client, message, args) {
+exports.run = (client, message, args) => {
 
 	const music = async (message, inputSongName) => {
 		console.log(`DEBUG: inputSongName = ${inputSongName}`);
@@ -30,4 +30,17 @@ exports.run = function(client, message, args) {
 		console.log(`DEBUG: play = ${inputSongName}`);
 		//message.channel.send(embed);
 	}
+};
+
+exports.conf = {
+	enabled: true,
+	guildOnly: false,
+	aliases: ['p'],
+	permLevel: 0
+};
+
+exports.help = {
+	name: 'play',
+	description: 'Play music',
+	usage: 'play [command][string]'
 };

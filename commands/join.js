@@ -18,3 +18,16 @@ exports.run = function(client, message) {
 				}).catch(error => message.channel.send(error));
 	}
 };
+
+exports.conf = {
+	enabled: true,
+	guildOnly: false,
+	aliases: [],
+	permLevel: 0
+};
+
+exports.help = {
+	name: 'join',
+	description: 'Get SA10 Bot to join the voice channel',
+	usage: 'join [command]'
+};

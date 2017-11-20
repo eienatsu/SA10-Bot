@@ -18,5 +18,17 @@ exports.run = async (client, message, args) => {
 			console.log(`Deleted message from ${message.author.tag}`);
 		});
 	}
+};
 
+exports.conf = {
+	enabled: true,
+	guildOnly: false,
+	aliases: ['d'],
+	permLevel: 3
+};
+
+exports.help = {
+	name: 'purge',
+	description: 'Mass deletes messages',
+	usage: 'purge [command][integer 2-100]'
 };

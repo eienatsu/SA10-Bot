@@ -8,3 +8,16 @@ exports.run = function(client, message) {
 	message.channel.send(`Current total playing time: **${h}h:${m}m:${s}s**.`);
 	console.log(`Total duration = ${d} milliseconds.`);
 };
+
+exports.conf = {
+	enabled: true,
+	guildOnly: false,
+	aliases: ['dur'],
+	permLevel: 0
+};
+
+exports.help = {
+	name: 'duration',
+	description: 'Displays total play time when SA10 is playing music',
+	usage: 'duration [command]'
+};

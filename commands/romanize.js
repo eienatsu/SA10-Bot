@@ -13,7 +13,18 @@ exports.run = async (client, message, args) => {
 	} catch (e) {
 		console.error(e);
 	}
-
 	//message.channel.send(parseKanji);
+};
 
+exports.conf = {
+	enabled: true,
+	guildOnly: false,
+	aliases: ['rom'],
+	permLevel: 0
+};
+
+exports.help = {
+	name: 'romanize',
+	description: 'Romanize Japanese text',
+	usage: 'romanize [command]'
 };

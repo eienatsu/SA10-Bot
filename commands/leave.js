@@ -9,3 +9,16 @@ exports.run = function(client, message) {
 		}).catch(error => message.channel.send(error));
 	}
 };
+
+exports.conf = {
+	enabled: true,
+	guildOnly: false,
+	aliases: ['l'],
+	permLevel: 0
+};
+
+exports.help = {
+	name: 'leave',
+	description: 'Get SA10 Bot to leave the voice channel',
+	usage: 'leave [command]'
+};

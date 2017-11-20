@@ -26,3 +26,16 @@ exports.run = function(client, message) {
 		message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
 	}
 };
+
+exports.conf = {
+	enabled: false,
+	guildOnly: false,
+	aliases: [],
+	permLevel: 4
+};
+
+exports.help = {
+	name: 'evaluate',
+	description: 'Evaluate an expression',
+	usage: 'eval [command]'
+};

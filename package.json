@@ -7,8 +7,8 @@
   "license": "MIT",
   "dependencies": {
     "animelyrics": "^1.0.3",
+    "async-file": "^2.0.2",
     "bufferutil": "^3.0.2",
-    "console-stamp": "^0.2.6",
     "discord.js": "^11.2.1",
     "enmap": "^0.4.2",
     "enmap-level": "^1.0.0",
@@ -17,6 +17,7 @@
     "googleapis": "^22.2.0",
     "in_array": "^1.1.0",
     "japanese": "^1.2.0",
+    "moment": "^2.19.2",
     "nihongo": "^1.0.1",
     "node-opus": "^0.2.7",
     "opusscript": "0.0.4",

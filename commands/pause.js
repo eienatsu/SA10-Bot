@@ -6,3 +6,16 @@ exports.run = function(client, message) {
 	});
 	console.log('DEBUG: Paused');
 };
+
+exports.conf = {
+	enabled: true,
+	guildOnly: false,
+	aliases: [],
+	permLevel: 0
+};
+
+exports.help = {
+	name: 'pause',
+	description: 'Pause the music',
+	usage: 'pause [command]'
+};

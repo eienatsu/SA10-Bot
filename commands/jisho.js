@@ -1,28 +1,27 @@
-const request = require('request');
 const Discord = require('discord.js');
+const request = require('request');
+//module.exports.getJisho;
 
-module.exports.display;
+exports.run = (client, message, args) => {
 
-exports.run = async (client, message, args) => {
-
-	let url, linkURL;
-
-	const inputKanji = args.slice(0).join(' ');
-	if (!inputKanji) {
-		message.channel.send('**ERROR:** No word specified.');
-		console.error('DEBUG: No word specified.');
-	} else {
-		console.log(`DEBUG: inputKanji = '${inputKanji}'`);
-		url = encodeURI(`http://jisho.org/api/v1/search/words?keyword=${inputKanji}`);
-		linkURL = encodeURI(`http://jisho.org/search/${inputKanji}`);
-		await request({uri: url, json: true}, (err, res, body) => {
-			if(!err && res.statusCode === 200) {
-				display(body);
-			}
-		});
-	}
+	const getJisho = async () => {
+		const inputKanji = args.slice(0).join(' ');
+		if (!inputKanji) {
+			message.channel.send('**ERROR:** No word specified.');
+			console.error('DEBUG: No word specified.');
+		} else {
+			console.log(`DEBUG: inputKanji = '${inputKanji}'`);
+			const url = encodeURI(`http://jisho.org/api/v1/search/words?keyword=${inputKanji}`);
+			const linkURL = encodeURI(`http://jisho.org/search/${inputKanji}`);
+			await request({uri: url, json: true}, (err, res, body) => {
+				if(!err && res.statusCode === 200) {
+					display(body, linkURL);
+				}
+			});
+		}
+	};
 	
-	const display = (body) => {
+	const display = (body, linkURL) => {
 		try {
 			// get kanji readings
 			let reading = [], jReading = [], jWord = [];
@@ -74,7 +73,7 @@ exports.run = async (client, message, args) => {
 
 			let embed = new Discord.RichEmbed()
 				.setColor(0x53D941)
-				.setTitle(`${inputKanji}`)
+				.setTitle('Reference')
 				.setURL(`${linkURL}`)
 				.setThumbnail('https://i.imgur.com/wtPjaqC.png')
 				.addField('Reading:', `${reading}`)
@@ -87,4 +86,18 @@ exports.run = async (client, message, args) => {
 			console.error(e);
 		}
 	};
+	getJisho();
+};
+
+exports.conf = {
+	enabled: true,
+	guildOnly: false,
+	aliases: ['j'],
+	permLevel: 0
+};
+
+exports.help = {
+	name: 'jisho',
+	description: 'Gets kanji data from jisho.org',
+	usage: 'jisho [command][*string* : kanji/word]'
 };

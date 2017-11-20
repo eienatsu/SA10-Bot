@@ -39,3 +39,16 @@ exports.run = async (client, message, args) => {
 		message.channel.send({embed});
 	});
 };
+
+exports.conf = {
+	enabled: true,
+	guildOnly: false,
+	aliases: ['yt'],
+	permLevel: 0
+};
+
+exports.help = {
+	name: 'youtube',
+	description: 'Get YouTube channel data',
+	usage: 'youtube [command][string : channel name/id]'
+};
