@@ -1,24 +1,26 @@
-const config = require('../config.json');
-
-exports.run = (client, message, args) => {
-
-	//console.log(typeof(message.guild.voiceConnection.dispatcher));
-	if (message.guild.voiceConnection !== null) {
-		let dispatcher = message.guild.voiceConnection.dispatcher;
-		let inputVolume = Math.round(args.slice(0).join(' '));
-		console.log(`DEBUG: inputVolume = ${inputVolume}`);
-		if (inputVolume > 100 || inputVolume <= 0) {
-			console.log(`DEBUG: inputVolume = ${inputVolume}`);
-			message.channel.send(`Invalid volume level.
-	\`Syntax: ${config.prefix}(volume {integer} [Between 1-100]\``);
+exports.run = async (client, message, args) => {
+	const voiceChannel = message.member.voiceChannel;
+	try {
+		if (!voiceChannel) {
+			message.channel.send('Not in the voice channel.');
+		} else if (!message.guild.voiceConnection) {
+			message.channel.send('Nothing playing.');
 		} else {
-			message.channel.send(`Volume set at: **${inputVolume}%**`).then(() => {
-				dispatcher.setVolume(`${inputVolume/100}`);
-			});
+			//exports.status = {isPlaying: isPlaying};
+			//console.log('DEBUG: stop.isPlaying = ' + isPlaying);
+			const dispatcher = message.guild.voiceConnection.dispatcher;
+			let inputVolume = Math.round(args.slice(0).join(' '));
+			console.log(`DEBUG: inputVolume = ${inputVolume}`);
+			if (inputVolume > 100 || inputVolume <= 0) {
+				message.channel.send('Invalid volume level.');
+			} else {
+				await dispatcher.setVolume(`${inputVolume/100}`);
+				message.channel.send(`DEBUG: Volume set at: **${inputVolume}%**`);
+			}
 			console.log(`Volume set at: ${inputVolume}%`);
 		}
-	} else {
-		message.channel.send('I\'m not in a music channel yet m8.');
+	} catch (e) {
+		console.error(e);
 	}
 };
 

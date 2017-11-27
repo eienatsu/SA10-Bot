@@ -5,11 +5,9 @@ exports.run = (client, message) => {
 			message.channel.send('Not in the voice channel.');
 		} else if (!message.guild.voiceConnection) {
 			message.channel.send('Nothing playing.');
-		} else if (message.guild.voiceConnection.dispatcher.paused) {
-			message.channel.send('Already paused.');
 		} else {
-			message.guild.voiceConnection.dispatcher.pause();
-			message.channel.send('Paused.');
+			message.channel.send('Skipped.');
+			message.guild.voiceConnection.dispatcher.end();
 		}
 	} catch (e) {
 		console.error(e);
@@ -19,12 +17,12 @@ exports.run = (client, message) => {
 exports.conf = {
 	enabled: true,
 	guildOnly: false,
-	aliases: [],
+	aliases: ['sk'],
 	permLevel: 0
 };
 
 exports.help = {
-	name: 'pause',
-	description: 'Pause the music',
-	usage: 'pause [command]'
+	name: 'skip',
+	description: 'Skip to the next track',
+	usage: 'skip [command]'
 };

@@ -11,7 +11,7 @@ exports.run = (client, message) => {
 		message.channel.send('Specified prefix is longer than 1 character.');
 	} else {
 		config.prefix = newPrefix;
-		fs.writeFile('./config.json', JSON.stringify(config), (err) => {
+		fs.writeFile('./config.json', JSON.stringify(config, null, '\t'), (err) => {
 			if (err) throw err;
 			console.log(`DEBUG: newPrefix = "${newPrefix}"`);
 			message.channel.send(`The new prefix has been set to "${newPrefix}".`);

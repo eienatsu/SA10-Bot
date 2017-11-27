@@ -1,10 +1,17 @@
 exports.run = (client, message) => {
-
-	const dispatcher = message.guild.voiceConnection.playFile();
-	message.channel.send('Resumed.').then(() => {
-		dispatcher.resume();
-	});
-	console.log('DEBUG: Resumed');
+	const voiceChannel = message.member.voiceChannel;
+	try {
+		if (!voiceChannel) {
+			message.channel.send('Not in the voice channel.');
+		} else if (!message.guild.voiceConnection) {
+			message.channel.send('Nothing playing.');
+		} else {
+			message.guild.voiceConnection.dispatcher.resume();
+			message.channel.send('Resumed.');
+		}
+	} catch (e) {
+		console.error(e);
+	}
 };
 
 exports.conf = {

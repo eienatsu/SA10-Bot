@@ -1,12 +1,6 @@
 exports.run = function(client, message) {
-
-	//const dispatcher = message.guild.voiceConnection.playFile();
-	let d =  message.guild.voiceConnection.dispatcher.time;
-	let s = parseInt(d / 1000); // convert to seconds
-	let m = parseInt(s / 60); // convert to minutes
-	let h = parseInt(m / 60); // convert to hours
-	message.channel.send(`Current total playing time: **${h}h:${m}m:${s}s**.`);
-	console.log(`Total duration = ${d} milliseconds.`);
+	let dispatcher = message.guild.voiceConnection.dispatcher;
+	message.channel.send(`Total play time : ${Math.floor(dispatcher.time / 60000)}:${Math.floor((dispatcher.time % 60000)/1000) <10 ? '0'+Math.floor((dispatcher.time % 60000)/1000):Math.floor((dispatcher.time % 60000)/1000)}`);
 };
 
 exports.conf = {

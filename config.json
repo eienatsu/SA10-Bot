@@ -1,7 +1,8 @@
 {
-    "prefix":"!",
-    "ownerid":"165294941080125442",
-    "defaultChannel":"381739208592588802",
-    "modrolename":"Moderator",
-    "adminrolename":"Admin"
+	"prefix": "!",
+	"ownerid": "165294941080125442",
+	"defaultChannel": "381739208592588802",
+	"modrolename": "Moderator",
+	"adminrolename": "Admin",
+	"repeatPlaylist": "true"
 }

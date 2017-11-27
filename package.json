@@ -8,10 +8,11 @@
   "dependencies": {
     "animelyrics": "^1.0.3",
     "async-file": "^2.0.2",
-    "bufferutil": "^3.0.2",
+    "bufferutil": "^3.0.3",
     "discord.js": "^11.2.1",
     "enmap": "^0.4.2",
     "enmap-level": "^1.0.0",
+    "erlpack": "github:hammerandchisel/erlpack",
     "ffmpeg-binaries": "^3.2.2-3",
     "google-auth-library": "^0.11.0",
     "googleapis": "^22.2.0",
@@ -25,9 +26,10 @@
     "request": "^2.83.0",
     "request-promise": "^4.2.2",
     "return-deep-diff": "^0.2.9",
+    "self-update": "0.0.1",
     "urlencode": "^1.1.0",
     "uws": "^8.14.1",
-    "ytdl-core": "^0.18.1"
+    "ytdl-core": "^0.18.2"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
