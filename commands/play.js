@@ -143,7 +143,7 @@ exports.run = async (client, message, args) => {
 
 	const playlist = await getPlaylist();
 	const songNames = formatSongNames(playlist);
-	play(connection, playlist, trackNum, songNames, message);
+	play(connection, playlist, trackNum, songNames);
 };
 
 exports.conf = {
