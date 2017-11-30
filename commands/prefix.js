@@ -28,6 +28,6 @@ exports.conf = {
 
 exports.help = {
 	name: 'prefix',
-	description: 'Sets new prefix',
-	usage: 'prefix [command]'
+	description: 'Set new prefix',
+	usage: '[prefix] [newPrefix]'
 };

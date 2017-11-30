@@ -34,5 +34,5 @@ exports.conf = {
 exports.help = {
 	name: 'volume',
 	description: 'Set volume level',
-	usage: 'volume [command][integer 1-100]'
+	usage: '[volume] [1-100]'
 };

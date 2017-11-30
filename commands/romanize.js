@@ -25,6 +25,6 @@ exports.conf = {
 
 exports.help = {
 	name: 'romanize',
-	description: 'Romanize Japanese text',
-	usage: 'romanize [command]'
+	description: 'Convert Japanese kana to romaji',
+	usage: '[romanize]'
 };

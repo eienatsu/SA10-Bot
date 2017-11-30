@@ -11,7 +11,7 @@ exports.run = (client, message) => {
 		} else {
 			const trackNum = play.song.trackNum;
 			const playlist = play.song.playlist;
-			console.log('DEBUG: [song.js] trackNum = ' + trackNum+1);
+			console.log('DEBUG: [song.js] trackNum = ' + (trackNum+1));
 			//console.log('DEBUG: [song.js] playlist = ' + playlist);
 
 			// remove track numbers and extensions
@@ -49,6 +49,6 @@ exports.conf = {
 
 exports.help = {
 	name: 'song',
-	description: 'Info on the current song',
-	usage: 'song [command]'
+	description: 'Show info on current song',
+	usage: '[song]'
 };

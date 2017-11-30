@@ -13,6 +13,6 @@ exports.conf = {
 
 exports.help = {
 	name: 'lyrics',
-	description: 'Get lyrics from animelyrics.com',
-	usage: 'lyrics [command]'
+	description: 'Show lyrics for current song',
+	usage: '[lyrics]'
 };

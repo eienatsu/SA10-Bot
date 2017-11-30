@@ -25,6 +25,6 @@ exports.conf = {
 
 exports.help = {
 	name: 'pause',
-	description: 'Pause the music',
-	usage: 'pause [command]'
+	description: 'Pause currently playing song',
+	usage: '[pause]'
 };

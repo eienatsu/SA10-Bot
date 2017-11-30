@@ -71,7 +71,7 @@ exports.run = (client, message, args) => {
 
 			let tag = `\`${body.data[0].tags[0]}\``;
 
-			let embed = new Discord.RichEmbed()
+			const embed = new Discord.RichEmbed()
 				.setColor(0x53D941)
 				.setTitle('Reference')
 				.setURL(`${linkURL}`)
@@ -98,6 +98,6 @@ exports.conf = {
 
 exports.help = {
 	name: 'jisho',
-	description: 'Gets kanji data from jisho.org',
-	usage: 'jisho [command][*string* : kanji/word]'
+	description: 'Translate kanji (漢字) and Japanese words (言葉)',
+	usage: '[jisho] [kanji/kotoba]'
 };

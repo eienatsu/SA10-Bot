@@ -23,6 +23,6 @@ exports.conf = {
 
 exports.help = {
 	name: 'skip',
-	description: 'Skip to the next track',
-	usage: 'skip [command]'
+	description: 'Skip to next track in playlist',
+	usage: '[skip]'
 };

@@ -30,13 +30,13 @@ exports.run = (client, message) => {
 exports.conf = {
 	enabled: true,
 	guildOnly: false,
-	aliases: ['l'],
+	aliases: ['ml'],
 	permLevel: 0
 };
 
 exports.help = {
 	name: 'list',
-	description: 'Show list of playlist',
-	usage: 'dirs [command][string]'
+	description: 'List playlists',
+	usage: '[list]'
 };
 

@@ -7,7 +7,7 @@ exports.run = async (client, message, args) => {
     .then(messages => message.channel.bulkDelete(messages));
 		message.channel.send(`Deleted **${messageCount}** messages.`)
 			.then(message => {
-				message.delete(1000);
+				//message.delete(1000);
 				console.log(`Deleted message from ${message.author.tag}`);
 			})
 			.catch(console.error);
@@ -30,5 +30,5 @@ exports.conf = {
 exports.help = {
 	name: 'purge',
 	description: 'Mass deletes messages',
-	usage: 'purge [command][integer 2-100]'
+	usage: '[purge] [integer 2-100]'
 };

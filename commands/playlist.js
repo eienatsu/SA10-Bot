@@ -65,7 +65,7 @@ exports.conf = {
 
 exports.help = {
 	name: 'playlist',
-	description: 'Show playlist',
-	usage: 'playlist [command][string]'
+	description: 'List all songs in current playlist',
+	usage: '[playlist] [playlistName]'
 };
 

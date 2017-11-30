@@ -112,6 +112,6 @@ exports.conf = {
 
 exports.help = {
 	name: 'jp',
-	description: '*For testing-only:* Isolates kanji in a sentense by themselves',
-	usage: 'jp [command][string]'
+	description: 'Get meaning of all kanji (漢字) in a sentence',
+	usage: '[jp] [kanji/sentence]'
 };

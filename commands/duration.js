@@ -12,6 +12,6 @@ exports.conf = {
 
 exports.help = {
 	name: 'duration',
-	description: 'Displays total play time when SA10 is playing music',
-	usage: 'duration [command]'
+	description: 'Show current song\'s play time',
+	usage: '[duration]'
 };

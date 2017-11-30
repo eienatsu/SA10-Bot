@@ -43,12 +43,12 @@ exports.run = async (client, message, args) => {
 exports.conf = {
 	enabled: true,
 	guildOnly: false,
-	aliases: ['yt'],
+	aliases: [],
 	permLevel: 0
 };
 
 exports.help = {
-	name: 'youtube',
-	description: 'Get YouTube channel data',
-	usage: 'youtube [command][string : channel name/id]'
+	name: 'ytinfo',
+	description: 'Get user\'s YouTube channel info',
+	usage: '[ytinfo] [channel name/id]'
 };

@@ -155,6 +155,6 @@ exports.conf = {
 
 exports.help = {
 	name: 'play',
-	description: 'Play music',
-	usage: 'play [string]'
+	description: 'Start selected music playlist',
+	usage: 'play [playlistName]'
 };
