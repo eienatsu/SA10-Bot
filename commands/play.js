@@ -63,7 +63,7 @@ exports.run = async (client, message, args) => {
 				//message.channel.send(`Now playing [ Track ${trackNum+1} ]: **${songNames[trackNum]}**`);
 			}
 
-			console.log('DEBUG: [play.js] client message listener = ' + client.listenerCount('message'));
+			//console.log('DEBUG: [play.js] client message listener = ' + client.listenerCount('message'));
 			let collector = message.channel.createMessageCollector(m => m);
 			collector.on('collect', async m => {
 				console.log('------------------play.js collector START------------------');
@@ -76,7 +76,7 @@ exports.run = async (client, message, args) => {
 					console.log('DEBUG: [play.js] inputTrackNum = ' + inputTrackNum);
 
 					if (inputTrackNum < 1 || inputTrackNum > playlist.length) {
-						message.channel.send('ERROR: Invalid Song ID. Refer to \`playlist\` command.');
+						message.channel.send('ERROR: Invalid Song ID. Use \`playlist\` command.');
 						console.log('DEBUG: [play.js] Invalid Song ID.');
 					} else {
 						trackNum = inputTrackNum-2;
@@ -115,10 +115,10 @@ exports.run = async (client, message, args) => {
 	try {
 		const dirs = await getDirs();
 		if (!inputPlaylist) {//if no args were provided
-			message.channel.send('ERROR: No playlist name provided');
+			message.channel.send('ERROR: Playlist name not provided');
 			return;
 		} else if (!(dirs.indexOf(inputPlaylist) > -1)) {
-			message.channel.send('ERROR: playlist doesn\'t exist');
+			message.channel.send('ERROR: Playlist doesn\'t exist');
 			return;
 		}
 	} catch (e) {
@@ -129,9 +129,9 @@ exports.run = async (client, message, args) => {
 	let connection;
 	try {
 		if (!voiceChannel || voiceChannel.type !== 'voice') {
-			return message.channel.send('You\'re not in a voice channel first.');
+			return message.channel.send('ERROR: Not in a voice channel.');
 		} else if (message.guild.voiceConnection) {
-			return message.channel.send('Already playing.');
+			return message.channel.send('ERROR: Already playing.');
 		} else {
 			message.channel.send('Loading playlist...');
 			connection = await voiceChannel.join();

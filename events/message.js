@@ -31,7 +31,9 @@ module.exports = async message => {
 	if (message.content.toLowerCase().startsWith('jordan'))
 		message.channel.send('https://www.youtube.com/watch?v=VxE_TbZP2VU');
 	if (message.content.toLowerCase().startsWith('howjoineien'))
-		message.channel.send('https://www.youtube.com/watch?v=BY00Zvoryzw');	
+		message.channel.send('https://www.youtube.com/watch?v=BY00Zvoryzw');
+	if (message.content.toLowerCase().startsWith('canicome'))
+		message.channel.send('no xD');
 
 
 	if (!message.content.startsWith(config.prefix)) return;

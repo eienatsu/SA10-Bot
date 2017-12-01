@@ -72,7 +72,7 @@ Aliases: ${command.conf.aliases}\`\`\``);
 exports.conf = {
 	enabled: true,
 	guildOnly: false,
-	aliases: ['h'],
+	aliases: ['h','canicome'],
 	permLevel: 0
 };
 

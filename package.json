@@ -1,8 +1,8 @@
 {
   "name": "sa10-bot",
-  "version": "0.0.1",
+  "version": "1.0.1",
   "description": "SA10 bot",
-  "main": "app.js",
+  "main": "bot.js",
   "author": "eienatsu",
   "license": "MIT",
   "dependencies": {
