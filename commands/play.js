@@ -43,6 +43,7 @@ exports.run = async (client, message, args) => {
 	};
 
 	const play = async (connection, playlist, trackNum, songNames) => {
+		let songDir = `./music/${inputPlaylist}/${playlist[trackNum]}`;
 		try {
 			let dispatcher = connection;
 			if (trackNum == playlist.length && config.repeatPlaylist == 'true')
@@ -57,7 +58,7 @@ exports.run = async (client, message, args) => {
 				console.log('DEBUG: [play.js] Voice connection disconnected');
 				return;
 			} else {
-				dispatcher = connection.playFile(`./music/${inputPlaylist}/${playlist[trackNum]}`);
+				dispatcher = connection.playFile(songDir);
 				dispatcher.passes = 2;
 				//console.log(`DEBUG: Current track ${trackNum+1} = ${songNames[trackNum]}`);
 				//message.channel.send(`Now playing [ Track ${trackNum+1} ]: **${songNames[trackNum]}**`);
@@ -101,6 +102,7 @@ exports.run = async (client, message, args) => {
 			});
 
 			exports.song = {
+				songDir: songDir,
 				inputPlaylist: inputPlaylist,
 				trackNum: trackNum,
 				playlist: playlist

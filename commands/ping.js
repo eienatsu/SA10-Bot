@@ -8,17 +8,17 @@ exports.run = async (client, message) => {
 	let pingString = '';
 	if (randomNum > 800)
 		pingString = 'You will not get itemz. xD';
-	if (randomNum > 500 )
-		pingString = '=w=';
-	if (randomNum > 300 )
-		pingString = 'You can\'t PvP or field boss. Why even play this game? :thinking:';
-	if (randomNum > 50 )
-		pingString = '';
-	if (randomNum <= 50 )
-		pingString = 'You\'re the BEST https://i.imgur.com/Z6U7ea2.jpg';
 		
-	message.channel.send('Pinging www.nexon.net [208.85.110.136] with 32 bytes of data...');
-	message.channel.send('`Average Ping: ' + randomNum + 'ms\n' + pingString + '`');
+	const sendPing = () => {
+		message.channel.send('`Average Ping: ' + randomNum + ' ms`');
+		if (randomNum <= 50)
+			message.channel.send('You\'re the BEST https://i.imgur.com/Z6U7ea2.jpg');
+	};
+
+	message.channel.send('`Pinging www.nexon.net [208.85.110.136] with 32 bytes of data...`');
+	setTimeout(sendPing, 1000);
+	
+	
 };
 
 exports.conf = {
@@ -30,6 +30,6 @@ exports.conf = {
 
 exports.help = {
 	name: 'ping',
-	description: '*For testing only',
+	description: 'Ping nexon servers? :thinking:',
 	usage: 'ping [command]'
 };

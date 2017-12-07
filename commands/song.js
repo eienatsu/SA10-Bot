@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const play = require('./play');
+const jsmediatags = require('jsmediatags');
 
 exports.run = (client, message) => {
 	const voiceChannel = message.member.voiceChannel;
@@ -21,19 +22,34 @@ exports.run = (client, message) => {
 				songNames[i] = songNames[i].replace(/^[()]*[0-9]*[ ()_.-]*/, ''); // remove track numbers
 			}
 
-			//name.replaceFirst("^\\d+\\.?\\s*-(?:.*?-)?\\s*", "")
+			const songDir = play.song.songDir;
+			
+			console.log(`DEBUG: [song.js] songDir = '${songDir}'`);
 
-			let embed = new Discord.RichEmbed()
-				.setColor(0xFB95CD)
-				.setTitle('Song Info:')
-				//.setURL(`${linkURL}`)
-				.setThumbnail('https://i.imgur.com/OctOicW.png')
-				.addField('Name', songNames[trackNum])
-				.addField('Track', trackNum+1)
-				.addField('Duration', 'Didn\'t implement this yet.')
-				.setTimestamp();
-				//.setFooter('http://www.google.com');
-			message.channel.send(embed);
+			jsmediatags.read(songDir, {
+				onSuccess: (tag) => {
+					console.log(`DEBUG: [song.js] tags.read() = ${tag}`);
+					console.log(`DEBUG: [song.js] tags.artist = ${tag.tags.artist}`);
+					console.log(`DEBUG: [song.js] tags.album = ${tag.tags.album}`);
+					console.log(`DEBUG: [song.js] tags.track = ${tag.tags.track}`);
+					//console.log(`DEBUG: [song.js] tags.picture = ${JSON.stringify(tag.tags.picture)}`);
+
+					let embed = new Discord.RichEmbed()
+					.setColor(0xFB95CD)
+					.setTitle('Song Info:')
+					//.setURL(`${linkURL}`)
+					.setThumbnail(tag.tags.picture)
+					//.setThumbnail('https://i.imgur.com/OctOicW.png')
+					.addField('Name', songNames[trackNum])
+					.addField('Track', trackNum+1)
+					.addField('Duration', 'Didn\'t implement this yet.')
+					.setTimestamp();
+					message.channel.send(embed);
+				},
+				onError: error => {
+					console.log(':(', error.type, error.info);
+				}
+			});		
 		}
 	} catch (e) {
 		console.error(e);
@@ -43,7 +59,7 @@ exports.run = (client, message) => {
 exports.conf = {
 	enabled: true,
 	guildOnly: false,
-	aliases: ['sg'],
+	aliases: ['sg','info'],
 	permLevel: 0
 };
 
